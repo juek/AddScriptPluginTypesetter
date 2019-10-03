@@ -7,3 +7,5 @@ AddScript plugin for Typesetter CMS
   After installing the plugin it can be easily inserted into the page, similar to other objects.
   The benefit of such a plugin is considerable.
   The disadvantage is that it requires great attention, as a malfunctioning script can ruin the entire page. So it is a useful script especially for those who have programming knowledge. Use it at your own risk!
+  
+  https://zenodo.org/badge/latestdoi/212623860
