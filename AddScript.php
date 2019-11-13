@@ -146,7 +146,7 @@ class AddScript
 
 		$section_data = self::ToggleClass($section_data, 'addscript-section-empty', false);
 		$section_data = self::ToggleClass($section_data, 'addscript-section-raw-output', false);
-		if( empty($script) ){
+		if( empty($section_data['script']) ){
 			$section_data['content'] = '<!-- EMPTY AddScript Section -->';
 			$section_data = self::ToggleClass($section_data, 'addscript-section-empty', true);
 		}elseif( $section_data['script_type'] == 'raw' ){
