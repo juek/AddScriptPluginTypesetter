@@ -1,0 +1,63 @@
+body.gpAdmin .filetype-addscript_section {
+  display: block;
+  margin: 24px 0 0 0;
+  padding: 0;
+}
+
+body.gpAdmin .filetype-addscript_section:before {
+  content: "\003c\002f\003e\00a0 AddScript Section";
+  display: block;
+  margin-top: 24px;
+  line-height: 24px;
+  text-align: center;
+  font-family: sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  background: none rgba(127, 127, 127, 0.5);
+  color: #000;
+  border: 2px dashed rgba(127, 127, 127, 0.75);
+}
+
+body.gpAdmin .filetype-addscript_section.addscript-has-errors:before {
+  content: "\003c\002f\003e\00a0 AddScript Section -- Contains Error(s)";
+  background: none rgba(255, 128, 70, 0.75);
+  border: 2px dashed rgb(96, 28, 0);
+}
+
+.addscript-error-msg {
+  font-family: sans-serif;
+  font-size: 16px;
+  line-height: 18px;
+  background: none rgba(255, 128, 70, 0.75);
+  color: rgb(96, 28, 0);
+  border: 1px solid rgb(96, 28, 0);
+  border-radius: 3px;
+  padding: 4px 6px;
+  margin-top: 0.5em;
+}
+
+.addscript-error-msg:after {
+  clear: both;
+}
+.addscript-error-msg:before, 
+.addscript-error-msg:after {
+  content: "";
+  display: table;
+}
+
+.addscript-error-msg .addscript-error-msg-text {
+  display: inline-block;
+  float: left;
+  padding: 4px 6px;
+}
+
+.addscript-error-msg .addscript-error-msg-btn {
+  display: inline-block;
+  padding: 4px 6px;
+  float: right;
+  background: rgb(96, 28, 0);
+  border-radius: 3px;
+  color: #fff !important;
+  cursor: pointer;
+  text-decoration: none;
+}

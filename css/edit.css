@@ -1,0 +1,49 @@
+body.gpAdmin .filetype-addscript_section .CodeMirror {
+  border: 2px dashed rgba(127, 127, 127, 0.25);
+  border-top: none;
+  padding: 4px;
+}
+
+
+/* editor component */
+
+.addscript-change-type label {
+  display: block;
+  text-align: center;
+  padding: 6px 4px;
+  background-color: #f3f3f3;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-bottom: none;
+  cursor: pointer;
+  margin: 0 !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.addscript-change-type label:first-child {
+  border-radius: 3px 3px 0 0;
+}
+
+.addscript-change-type label:last-child {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0 0 3px 3px;
+}
+
+.addscript-change-type label.is-checked {
+  background-color: #fff;
+}
+.addscript-change-type label.is-checked:before {
+  font-family: FontAwesome;
+  display: inline-block;
+  margin-right: 0.3em;
+  font-size: 16px !important;
+  content: "\f00c";
+  color: #38AB90;
+}
+
+.addscript-change-type label input[type="radio"] {
+  display: none;
+}
+
