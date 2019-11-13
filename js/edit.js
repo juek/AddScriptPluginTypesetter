@@ -1,5 +1,5 @@
 function gp_init_inline_edit(area_id, section_object){
-	var textarea, cache;
+	var $textarea, cache;
 
 	$gp.LoadStyle(AddScript_base + '/thirdparty/codemirror/lib/codemirror.min.css', false);
 	$gp.LoadStyle(AddScript_base + '/css/edit.css', false);
