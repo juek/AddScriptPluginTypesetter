@@ -108,7 +108,10 @@ class AddScript
 				return $section_data;
 			}
 		}
-		$classes = explode(' ', $section_data['attributes']['class']);
+		$classes = array();
+		if( !empty($section_data['attributes']['class']) ){
+			$classes = explode(' ', $section_data['attributes']['class']);
+		}
 		$classes = array_map('trim', $classes);
 		if( $toggle && !in_array($class, $classes) ){
 			$classes[] = $class;
