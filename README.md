@@ -20,14 +20,14 @@ See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub
 * Added selection for 4 different script types to the editor area: 'Raw Output (in place)' corresponds to ver 1.0.0 output. The 3 new options 'JavaScript', 'jQuery' and 'Script URL' use Typesetter's native methods to add script code to a page.
 * CodeMirror: We now use [CodeMirror](https://github.com/codemirror/CodeMirror) for a more pleasant UX and syntax highlighting for JavaScript/jQuery and mixed HTML/JS/CSS.
 * JavaScript Syntax Check: Code entered using the script types 'JavaScript' and 'jQuery' will be checked for syntax errors upon saving. 
-* Prevent autosave: Typesetter's default autosaving (every 5 seconds) may save framgmented code. If the new syntax check works reliably (which yet needs a bit of testing), we might turn it on again.
-* AddScript sections will be hidden in to regular visitors, except when using the 'Raw Output (in place)' type, which may contain and / or write HTML markup to the page via JS. On the other hand, when logged in, the sections are now clearly visible.
+* Prevent autosave: Typesetter's default autosaving (every 5 seconds) may lead to fragmented code. If the new syntax check works reliably (which yet needs a bit of testing), we might turn it on again.
+* AddScript sections will be hidden to regular visitors, except when using the 'Raw Output (in place)' type, which may contain and / or write HTML markup to the page via JS. On the other hand, when logged in, the sections are now clearly visible and only expand when being edited.
 
 ## Requirements ##
 * Typesetter CMS 4.5+
 
 ## Manual Installation ##
-1. Download the master ZIP archive by clicking the green [ clone or download ] button and then 'Download ZIP' 
+1. Download the master ZIP archive by clicking the green [ clone or download ] button on the top right of this page, then click 'Download ZIP' in the popover menu
 2. Upload the extracted folder 'AddScriptPluginTypesetter-master' to your server into the /addons directory
 3. Install using Typesetter's Admin Toolbox &rarr; Plugins &rarr; Manage &rarr; Available &rarr; AddScript
 
