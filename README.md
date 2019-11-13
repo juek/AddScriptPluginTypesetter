@@ -1,11 +1,35 @@
-# AddScriptPluginTypesetter
-AddScript plugin for Typesetter CMS
+# AddScript plugin for Typesetter CMS #
 
-  This is my first plugin for Typesetter CMS (https://github.com/Typesetter/Typesetter). As the documentation was scarce, I used ppeterka's EasyMark plugin as the main source of information (https://github.com/ppeterka/easymark), MIT license. 
-  The AddScript plugin can be used to enter source code directly into the page. CKEditor3.4, the basic editor of Typesetter5.1 does not allow this, but it can be configured to allow editing, with certain limitations.
-  However, the AddScript plugin makes it much easier to insert any code without modifying it in any way. For example, you can easily insert any Facebook script.
-  After installing the plugin it can be easily inserted into the page, similar to other objects.
-  The benefit of such a plugin is considerable.
-  The disadvantage is that it requires great attention, as a malfunctioning script can ruin the entire page. So it is a useful script especially for those who have programming knowledge. Use it at your own risk!
-  
- <a href="https://zenodo.org/badge/latestdoi/212623860"><img src="https://zenodo.org/badge/212623860.svg" alt="DOI"></a>
+## About
+* Originally made by [Florin Catalin](https://github.com/florincatalin) based on some code from [ppeterka's EasyMark plugin](https://github.com/ppeterka/easymark) 
+* The AddScript plugin adds a section type that can be used to enter source code directly into the page without using CK Editor (Typesetter's default content editor)
+* However, the AddScript plugin makes it much easier to insert any code without modifying it in any way. For example, you can easily insert any Facebook script
+* After installation, you may insert AddScript sections similar to other content types
+* Although we added some JavaScript validation in ver 1.1.0, you may still be able to enter script code that breaks some of your website's functionality. Therefore, some programming knowledge is required. Use it at your own risk!
+
+See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub](https://github.com/Typesetter/Typesetter)
+
+## Current Version 
+1.1.0
+
+## Change Log ##
+* 1.1.0 Some new features and enhancements, see below
+* 1.0.0 Intial version
+
+## New in version 1.1.0 ##
+* Added selection for 4 different script types to the editor area: 'Raw Output (in place)' corresponds to ver 1.0.0 output. The 3 new options 'JavaScript', 'jQuery' and 'Script URL' use Typesetter's native methods to add script code to a page.
+* CodeMirror: We now use [CodeMirror](https://github.com/codemirror/CodeMirror) for a more pleasant UX and syntax highlighting for JavaScript/jQuery and mixed HTML/JS/CSS.
+* JavaScript Syntax Check: Code entered using the script types 'JavaScript' and 'jQuery' will be checked for syntax errors upon saving. 
+* Prevent autosave: Typesetter's default autosaving (every 5 seconds) may save framgmented code. If the new syntax check works reliably (which yet needs a bit of testing), we might turn it on again.
+* AddScript sections will be hidden in to regular visitors, except when using the 'Raw Output (in place)' type, which may contain and / or write HTML markup to the page via JS. On the other hand, when logged in, the sections are now clearly visible.
+
+## Requirements ##
+* Typesetter CMS 4.5+
+
+## Manual Installation ##
+1. Download the master ZIP archive by clicking the green [ clone or download ] button and then 'Download ZIP' 
+2. Upload the extracted folder 'AddScriptPluginTypesetter-master' to your server into the /addons directory
+3. Install using Typesetter's Admin Toolbox &rarr; Plugins &rarr; Manage &rarr; Available &rarr; AddScript
+
+## Authors
+[florincatalin](https://github.com/florincatalin), [juek](https://github.com/juek)
