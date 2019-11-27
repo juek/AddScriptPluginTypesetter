@@ -2,6 +2,8 @@ body.gpAdmin .filetype-addscript_section .CodeMirror {
   border: 2px dashed rgba(127, 127, 127, 0.25);
   border-top: none;
   padding: 4px;
+  font-family: "Consolas","Menlo","Andale Mono","DejaVu Sans Mono",monospace !important;
+  line-height: 1.3;
 }
 
 
