@@ -31,6 +31,7 @@ defined('is_running') or die('Not an entry point...');
 class AddScript
 {
 	public static $sectionType = 'addscript_section';
+	public static $i18n;
 
 
 	static function GetHead() {
@@ -40,6 +41,7 @@ class AddScript
 		}
 		\gp\tool\Plugins::css('css/admin.css', false);
 		// \gp\tool\Plugins::js('js/AddScript_admin.js', false);
+		// self::GetTranslations();
 	}
 
 
@@ -172,8 +174,11 @@ class AddScript
 		  return $scripts;
 		}
 
-		$addonBasePath = (strpos($addonRelativeCode, 'addons/') > 0) 
-			? '/addons/' . $addonFolderName 
+		self::GetTranslations();
+		echo "\n" . 'AddScript_i18n = ' . json_encode(self::$i18n) . ';' . "\n";
+
+		$addonBasePath = (strpos($addonRelativeCode, 'addons/') > 0)
+			? '/addons/' . $addonFolderName
 			: '/data/_addoncode/' . $addonFolderName;
 		echo "\n" . 'AddScript_base = "' . $addonBasePath . '";' . "\n";
 
@@ -183,8 +188,25 @@ class AddScript
 		$scripts[] = $addonRelativeCode . '/thirdparty/codemirror/mode/css/css.min.js';
 		$scripts[] = $addonRelativeCode . '/thirdparty/codemirror/mode/htmlmixed/htmlmixed.min.js';
 		$scripts[] = $addonRelativeCode . '/thirdparty/codemirror/addon/display/placeholder.min.js';
+		$scripts[] = $addonRelativeCode . '/thirdparty/codemirror/addon/show-invisibles/show-invisibles.js';
 		$scripts[] = $addonRelativeCode . '/js/edit.js';
-		return $scripts; 
+		// $scripts[] = array( 'code' => '<style></style>' );
+		return $scripts;
+	}
+
+
+	static function GetTranslations() {
+		global $config, $addonPathCode;
+		$lang_file = $addonPathCode . '/i18n/' . $config['language'] . '.php';
+		if( file_exists($lang_file) ){
+			include $lang_file;
+			$msg = 'lang_file loaded (' .  $lang_file . ')';
+		}else{
+			include $addonPathCode . '/i18n/en.php'; // fallback to english
+			$msg = 'lang_file does not exists (' .  $lang_file . ')';
+		}
+		self::$i18n = $i18n;
+		return $msg;
 	}
 
 }

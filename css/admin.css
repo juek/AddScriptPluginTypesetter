@@ -11,53 +11,78 @@ body.gpAdmin .filetype-addscript_section:before {
   line-height: 24px;
   text-align: center;
   font-family: sans-serif;
-  font-size: 16px;
-  font-weight: bold;
-  background: none rgba(127, 127, 127, 0.5);
+  font-size: 14px !important;
+  font-weight: normal !important;
+  background: none rgba(127, 127, 127, 0.65);
   color: #000;
-  border: 2px dashed rgba(127, 127, 127, 0.75);
+  border: 2px dashed rgba(127, 127, 127, 0.85);
 }
 
 body.gpAdmin .filetype-addscript_section.addscript-has-errors:before {
-  content: "\003c\002f\003e\00a0 AddScript Section -- Contains Error(s)";
-  background: none rgba(255, 128, 70, 0.75);
+  content: "\003c\002f\003e\00a0 AddScript Section (!)";
+  background: none rgba(255, 128, 70, 0.85);
   border: 2px dashed rgb(96, 28, 0);
 }
 
-.addscript-error-msg {
+.addscript-msg {
   font-family: sans-serif;
   font-size: 16px;
   line-height: 18px;
-  background: none rgba(255, 128, 70, 0.75);
-  color: rgb(96, 28, 0);
-  border: 1px solid rgb(96, 28, 0);
   border-radius: 3px;
   padding: 4px 6px;
   margin-top: 0.5em;
 }
 
-.addscript-error-msg:after {
+.addscript-msg-error {
+  background: none rgba(255, 108, 71, 0.85);
+  color: rgb(96, 28, 0);
+  border: 1px solid rgb(96, 28, 0);
+}
+.addscript-msg-warning {
+  background: none rgba(255, 181, 70, 0.85);
+  color: rgb(80, 59, 0);
+  border: 1px solid rgb(170, 125, 0);
+}
+.addscript-msg-notice {
+  background: none rgba(113, 255, 70, 0.85);
+  color: rgb(59, 99, 7);
+  border: 1px solid rgb(96, 170, 0);
+}
+
+
+.addscript-msg:after {
   clear: both;
 }
-.addscript-error-msg:before, 
-.addscript-error-msg:after {
+.addscript-msg:before,
+.addscript-msg:after {
   content: "";
   display: table;
 }
 
-.addscript-error-msg .addscript-error-msg-text {
-  display: inline-block;
+.addscript-msg .addscript-msg-text {
+  display: block;
+  font-size: 14px !important;
+  line-height: 1 !important;
   float: left;
-  padding: 4px 6px;
+  padding: 8px 4px;
 }
 
-.addscript-error-msg .addscript-error-msg-btn {
-  display: inline-block;
-  padding: 4px 6px;
+.addscript-msg .addscript-msg-btn {
+  display: block;
+  font-size: 14px !important;
+  font-weight: normal !important;
+  padding: 6px 12px !important;
   float: right;
-  background: rgb(96, 28, 0);
   border-radius: 3px;
-  color: #fff !important;
   cursor: pointer;
   text-decoration: none;
+}
+.addscript-msg-error .addscript-msg-btn {
+  background: rgb(96, 28, 0);
+  color: #fff !important;
+}
+
+.addscript-msg-warning .addscript-msg-btn {
+  background: rgb(170, 125, 0);
+  color: #fff !important;
 }

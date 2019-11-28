@@ -4,8 +4,18 @@ body.gpAdmin .filetype-addscript_section .CodeMirror {
   padding: 4px;
   font-family: "Consolas","Menlo","Andale Mono","DejaVu Sans Mono",monospace !important;
   line-height: 1.3;
+  height: auto;
 }
 
+body.gpAdmin .filetype-addscript_section .CodeMirror .cm-tab {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUg\
+    AAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQF\
+    AQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQw\
+    S4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4\
+    LUAAAAASUVORK5CYII=');
+  background-position: right;
+  background-repeat: no-repeat;
+}
 
 /* editor component */
 
