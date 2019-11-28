@@ -16,6 +16,9 @@ See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub
 * 1.1.0 Some new features and enhancements, see below
 * 1.0.0 Intial version
 
+## TODOs ##
+* Add options for async and defer loading
+
 ## New in version 1.1.0 ##
 * Added selection for 4 different script types to the editor area: 'Raw Output (in place)' corresponds to ver 1.0.0 output. The 3 new options 'JavaScript', 'jQuery' and 'Script URL' use Typesetter's native methods to add script code to a page or load scripts from remote sources.
 * CodeMirror: We now use [CodeMirror](https://github.com/codemirror/CodeMirror) for a more pleasant UX and syntax highlighting for JavaScript/jQuery and mixed HTML/JS/CSS.
