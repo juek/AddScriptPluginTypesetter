@@ -13,7 +13,7 @@ See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub
 1.1.1
 
 ## Change Log ##
-* 1.1.1 Admin page ready to manage global scripts
+* 1.1.1 Admin page ready to manage global scripts, internationlization (currently en, de, fr, it)
 * 1.1.0 Some new features and enhancements, see below
 * 1.0.0 Intial version
 
@@ -29,7 +29,7 @@ See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub
 * AddScript sections will be hidden to regular visitors, except when using the 'Raw Output (in place)' type, which may contain and / or write HTML markup to the page via JS. On the other hand, when logged in, the sections are now clearly visible and only expand when being edited.
 
 ## Requirements ##
-* Typesetter CMS 5.1.1-b1+ (as of ver. 1.1.1 it will use use the new AdminLinklabel hook for i18n)
+* Typesetter CMS 5.1.1-b1+ (as of ver. 1.1.1 it will use the new AdminLinklabel hook for i18n)
 
 ## Manual Installation ##
 1. Download the master ZIP archive by clicking the green [ clone or download ] button on the top right of this page, then click 'Download ZIP' in the popover menu
