@@ -28,6 +28,6 @@ $i18n = array(
     'raw'     => 'Додайте код...',
   ),
 
-  'Admin_AddScript'       => 'Керувати скиптами', // for TS 5.1.1-b1+ AdminLinkLabel hook, see Addon.ini
+  'Admin_AddScript'       => 'Керувати скриптами', // for TS 5.1.1-b1+ AdminLinkLabel hook, see Addon.ini
 
 );
