@@ -13,11 +13,12 @@ See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub
 1.1.1
 
 ## Change Log ##
-* 1.1.1 Admin page to manage global scripts implemented
+* 1.1.1 Admin page ready to manage global scripts
 * 1.1.0 Some new features and enhancements, see below
 * 1.0.0 Intial version
 
 ## TODOs ##
+* Opt-in Cookies (required by EU GDPR for all sorts of analytics and tracking, e.g. GA, Google Tag Manager, Facebook Pixel, you name it)
 * Add options for async and defer loading (already implemented in global scripts as of ver. 1.1.1)
 
 ## New in version 1.1.0 ##
