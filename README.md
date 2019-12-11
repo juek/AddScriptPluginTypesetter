@@ -10,24 +10,25 @@
 See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub](https://github.com/Typesetter/Typesetter)
 
 ## Current Version 
-1.1.0
+1.1.1
 
 ## Change Log ##
+* 1.1.1 Admin page to manage global scripts implemented
 * 1.1.0 Some new features and enhancements, see below
 * 1.0.0 Intial version
 
 ## TODOs ##
-* Add options for async and defer loading
+* Add options for async and defer loading (already implemented in global scripts as of ver. 1.1.1)
 
 ## New in version 1.1.0 ##
 * Added selection for 4 different script types to the editor area: 'Raw Output (in place)' corresponds to ver 1.0.0 output. The 3 new options 'JavaScript', 'jQuery' and 'Script URL' use Typesetter's native methods to add script code to a page or load scripts from remote sources.
 * CodeMirror: We now use [CodeMirror](https://github.com/codemirror/CodeMirror) for a more pleasant UX and syntax highlighting for JavaScript/jQuery and mixed HTML/JS/CSS.
-* JavaScript Syntax Check: Code entered using the script types 'JavaScript' and 'jQuery' will be checked for syntax errors upon saving. 
+* JavaScript Check: Code entered using the script types 'JavaScript' and 'jQuery' will be checked for errors.
 * Prevent autosave: Typesetter's default autosaving (every 5 seconds) may lead to fragmented code. If the new syntax check works reliably (which yet needs a bit of testing), we might turn it on again.
 * AddScript sections will be hidden to regular visitors, except when using the 'Raw Output (in place)' type, which may contain and / or write HTML markup to the page via JS. On the other hand, when logged in, the sections are now clearly visible and only expand when being edited.
 
 ## Requirements ##
-* Typesetter CMS 4.5+
+* Typesetter CMS 5.1.1-b1+ (as of ver. 1.1.1 it will use use the new AdminLinklabel hook for i18n)
 
 ## Manual Installation ##
 1. Download the master ZIP archive by clicking the green [ clone or download ] button on the top right of this page, then click 'Download ZIP' in the popover menu
