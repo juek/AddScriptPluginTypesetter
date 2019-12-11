@@ -36,7 +36,7 @@ class Output extends \Addon\AddScript\Common
 
 					switch( $script['load_in'] ){
 						case 'head':
-							$page->head .= "<script\n" . ' src="' . $script_url . '"' // OMFG how hackish! <script\n will not be catched by the regex /<script.*?</script>/ hence not be moved out of <head>
+							$page->head .= "<script\n" . ' src="' . $script_url . '"' // "<script\n" will prevent moving the script into body
 								. ( isset($script['attrs']) && in_array('async', $script['attrs']) ? ' async="async"' : '' )
 								. ( isset($script['attrs']) && in_array('defer', $script['attrs']) ? ' defer="defer"' : '' )
 								. $data_attr . '></script>';
@@ -69,7 +69,7 @@ class Output extends \Addon\AddScript\Common
 				case 'js':
 					switch( $script['load_in'] ){
 						case 'head':
-							$page->head .= "<script\n" . $data_attr . '>' // same hack again :)
+							$page->head .= "<script\n" . $data_attr . '>' // "<script\n" will prevent moving the script into body
 								. $script['code']
 								. '</script>';
 							break;
@@ -133,7 +133,10 @@ class Output extends \Addon\AddScript\Common
 
 			case 'url':
 				$page->head .= "\n<!-- AddScript section START -->\n"
-					. '<script src="' . $section_data['script'] . '"></script>'
+					. "<script\n" . ' src="' . $section_data['script'] . '"' // "<script\n" will prevent moving the script into body
+					. ( isset($section_data['script_attrs']) && in_array('async', $section_data['script_attrs']) ? ' async="async"' : '' )
+					. ( isset($section_data['script_attrs']) && in_array('defer', $section_data['script_attrs']) ? ' defer="defer"' : '' )
+					. '></script>'
 					. "\n<!-- AddScript section END -->\n";
 				break;
 

@@ -14,7 +14,23 @@ function gp_init_inline_edit(area_id, section_object){
 
   gp_editor = {
 
+    script        : false,
+    script_type   : false,
+    script_attrs  : { async : false, defer : false },
+    linked_to     : [],
+
     init : function(){
+      console.log('section_object = ', section_object);
+
+      gp_editor.script        = section_object.script;
+      gp_editor.script_type   = section_object.script_type;
+
+      $.each(section_object.script_attrs, function(i, v){
+        gp_editor.script_attrs[v] = true;
+      });
+
+      gp_editor.linked_to = section_object.linked_to;
+
       gp_editor.createEditorUi();
       gp_editor.createCodeMirror(gp_editor.script_type);
       gp_editor.resetDirty();
@@ -24,24 +40,20 @@ function gp_init_inline_edit(area_id, section_object){
 
     ui : {},
 
-
-    script_type : section_object.script_type, 
-
-
     CanAutoSave : function(){ 
       return false;  // prevent saving invalid script fragments
     },
 
 
-    sleep : function(){ 
-      edit_div.find('.CodeMirror').slideUp(); 
-      edit_div.find('.addscript-error-msg').hide(); 
+    sleep : function(){
+      edit_div.find('.CodeMirror').slideUp();
+      edit_div.find('.addscript-error-msg').hide();
     },
 
 
-    wake : function(){ 
-      edit_div.find('.CodeMirror').slideDown(); 
-      edit_div.find('.addscript-error-msg').show(); 
+    wake : function(){
+      edit_div.find('.CodeMirror').slideDown();
+      edit_div.find('.addscript-error-msg').show();
     },
 
 
@@ -57,13 +69,31 @@ function gp_init_inline_edit(area_id, section_object){
 
 
     gp_saveData : function(get_cache){
-      var script = '';
       if( typeof(get_cache) != 'boolean' ){
         gp_editor.checkInput();
       }
-      return 'script=' 
+
+      // console.log('gp_editor.script_attrs = ', gp_editor.script_attrs);
+      var script_attrs = []; 
+      $.each(gp_editor.script_attrs, function(i, v){
+        if( v ){
+          script_attrs.push(i);
+        }
+      });
+      // console.log('script_attrs = ', script_attrs);
+
+      var linked_to = [];
+      $.each(gp_editor.linked_to, function(i, v){
+        if( v ){
+          linked_to.push(i);
+        }
+      });
+
+      return 'script='
         + encodeURIComponent(gp_editor.codeMirror.getValue())
-        + '&script_type=' + gp_editor.script_type;
+        + '&script_type=' + gp_editor.script_type
+        + '&' + $.param({script_attrs : script_attrs})
+        + '&' + $.param({linked_to : linked_to});
     },
 
 
@@ -114,7 +144,7 @@ function gp_init_inline_edit(area_id, section_object){
       edit_div
         .addClass('addscript-has-errors')
         .append('<div class="addscript-msg addscript-msg-' + type + '">'
-        +   '<a class="addscript-msg-btn" onclick="gp_editor.checkInput()">' + AddScript_i18n['check_again'] + '</a>'
+        //  +   '<a class="addscript-msg-btn" onclick="gp_editor.checkInput()">' + AddScript_i18n['check_again'] + '</a>'
         +   '<span class="addscript-msg-text">'
         +     '<i class="fa fa-exclamation-circle"></i> '
         +     msg
@@ -148,7 +178,10 @@ function gp_init_inline_edit(area_id, section_object){
           codeMirrorConfig.mode = 'text/html';
           break;
       }
-      gp_editor.codeMirror = CodeMirror.fromTextArea($textarea.get(0), codeMirrorConfig);
+      gp_editor.codeMirror = CodeMirror
+        .fromTextArea($textarea.get(0), codeMirrorConfig);
+      gp_editor.codeMirror.on('change', gp_editor.checkInput);
+
       gp_editor.checkInput();
     },
 
@@ -162,18 +195,52 @@ function gp_init_inline_edit(area_id, section_object){
         + '</div>')
         .appendTo('#ckeditor_controls');
 
+      gp_editor.ui.attrAsync = $('<label><input type="checkbox" name="attr_async" value="async" /> async</label>');
+      gp_editor.ui.attrDefer = $('<label><input type="checkbox" name="attr_defer" value="defer" /> defer</label>');
+
+      $('<div></div>')
+        .append([
+          gp_editor.ui.attrAsync,
+          gp_editor.ui.attrDefer
+        ])
+        .insertAfter( gp_editor.ui.changeType.find('input[value="url"]').closest('label') );
+
+      gp_editor.ui.attrAsync
+        .find('input[type="checkbox"]')
+          .prop('checked', gp_editor.script_attrs.async)
+          .closest('label').toggleClass('is-checked', gp_editor.script_attrs.async);
+
+      gp_editor.ui.attrAsync
+        .find('input[type="checkbox"]')
+        .on('change', function(){
+          gp_editor.script_attrs.async = this.checked;
+          $(this).closest('label').toggleClass('is-checked', this.checked)
+        });
+
+      gp_editor.ui.attrDefer
+        .find('input[type="checkbox"]')
+          .prop('checked', gp_editor.script_attrs.defer)
+          .closest('label').toggleClass('is-checked', gp_editor.script_attrs.defer);
+
+      gp_editor.ui.attrDefer
+        .find('input[type="checkbox"]')
+        .on('change', function(){
+          gp_editor.script_attrs.defer = this.checked;
+          $(this).closest('label').toggleClass('is-checked', this.checked)
+        });
+
       gp_editor.ui.changeType
         .find('input[value="' + gp_editor.script_type + '"]')
           .prop('checked', true)
           .closest('label').addClass('is-checked');
 
       gp_editor.ui.changeType
-        .find('input[type="radio"]')
-        .on('change', function(){
-          $(this).closest('label').addClass('is-checked')
-            .siblings().removeClass('is-checked');
-          gp_editor.switchMode( $(this).val() );
-        });
+      .find('input[type="radio"]')
+      .on('change', function(){
+        $(this).closest('label').addClass('is-checked')
+          .siblings().removeClass('is-checked');
+        gp_editor.switchMode( $(this).val() );
+      });
     },
 
 

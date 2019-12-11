@@ -60,6 +60,8 @@ class Edit extends \Addon\AddScript\Common
 		$section = array();
 		$section['content']			= '<!-- AddScript Section -->';
 		$section['script_type']		= 'js'; // 'js' | 'jQuery' | 'url' | 'raw'
+		$section['script_attrs']	= array(); // [['async'] [,'defer']]
+		$section['linked_to']		= array(); // [[global script id(s)]]
 		$section['script']			= '';
 		$section['gp_label']		= 'AddScript';
 		$section['gp_color']		= '#777';
@@ -77,6 +79,17 @@ class Edit extends \Addon\AddScript\Common
 		$section_data					= $page->file_sections[$section];
 		$section_data['script_type']	= trim($_POST['script_type']);
 		$section_data['script']			= trim($_POST['script']);
+
+		if( !empty($_POST['script_attrs']) ){
+			$section_data['script_attrs']	= $_POST['script_attrs'];
+		}else{
+			unset($section_data['script_attrs']);
+		}
+		if( !empty($_POST['linked_to']) ){
+			$section_data['linked_to']		= $_POST['linked_to'];
+		}else{
+			unset($section_data['linked_to']);
+		}
 
 		$section_data = self::ToggleClass($section_data, 'addscript-section-empty', false);
 		$section_data = self::ToggleClass($section_data, 'addscript-section-raw-output', false);

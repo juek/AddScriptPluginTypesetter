@@ -19,7 +19,8 @@ body.gpAdmin .filetype-addscript_section .CodeMirror .cm-tab {
 
 /* editor component */
 
-.addscript-change-type label {
+.addscript-change-type > label,
+.addscript-change-type > div {
   display: block;
   text-align: center;
   padding: 6px 4px;
@@ -34,19 +35,19 @@ body.gpAdmin .filetype-addscript_section .CodeMirror .cm-tab {
   user-select: none;
 }
 
-.addscript-change-type label:first-child {
+.addscript-change-type > label:first-child {
   border-radius: 3px 3px 0 0;
 }
 
-.addscript-change-type label:last-child {
+.addscript-change-type > label:last-child {
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0 0 3px 3px;
 }
 
-.addscript-change-type label.is-checked {
+.addscript-change-type > label.is-checked {
   background-color: #fff;
 }
-.addscript-change-type label.is-checked:before {
+.addscript-change-type > label.is-checked:before {
   font-family: FontAwesome;
   display: inline-block;
   margin-right: 0.3em;
@@ -56,6 +57,47 @@ body.gpAdmin .filetype-addscript_section .CodeMirror .cm-tab {
 }
 
 .addscript-change-type label input[type="radio"] {
+  display: none;
+}
+
+.addscript-change-type > div {
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box !important;
+  max-height: 0;
+  border-top: 0;
+  -webkit-transition: max-height 0.3s;
+  transition: max-height 0.3s;
+}
+.addscript-change-type > label.is-checked + div {
+  max-height: 30px;
+}
+
+
+.addscript-change-type > div > label {
+  display: inline-block;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  width: 50%;
+  text-align: center;
+  padding: 4px;
+  border-right: 1px solid rgba(255, 255, 255, 0.125);
+  background-color: #ccc;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.addscript-change-type > div > label:last-child {
+  border-right: none;
+}
+.addscript-change-type > div > label.is-checked {
+  background-color: #38AB90;
+  color: #fff;
+}
+
+.addscript-change-type > div > label > input {
   display: none;
 }
 
