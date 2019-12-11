@@ -88,8 +88,8 @@ function gp_init_inline_edit(area_id, section_object){
 
         case 'url':
           if( !gp_editor.url_regex.test(current_input) ){
-            $msg = AddScript_i18n['warning'] + ': ' + AddScript_i18n['invalid_url'];
-            gp_editor.showErrors('warning', $msg);
+            var msg = AddScript_i18n['warning'] + ': ' + AddScript_i18n['invalid_url'];
+            gp_editor.showErrors('warning', msg);
             return false;
           }
           break;

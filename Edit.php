@@ -74,7 +74,7 @@ class Edit extends \Addon\AddScript\Common
 			return $return;
 		}
 
-		$section_data 					= $page->file_sections[$section];
+		$section_data					= $page->file_sections[$section];
 		$section_data['script_type']	= trim($_POST['script_type']);
 		$section_data['script']			= trim($_POST['script']);
 

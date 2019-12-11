@@ -9,6 +9,10 @@ $i18n = array(
   'invalid_url'           => 'l’URL actuelle semble être invalide',
   'check'                 => 'Vérifier',
   'check_again'           => 'Revérifier',
+  'script_label'          => 'Étiquette de script',
+  'load_in'               => 'Charger dans&hellip;',
+  'add_script'            => 'Ajouter un script',
+  'opt_in_required'       => 'Cookie opt-in requis',
 
   'types'                 => array(
     'js'      => 'JavaScript',
@@ -23,4 +27,7 @@ $i18n = array(
     'url'     => 'Ajoutez une URL de script ici...',
     'raw'     => 'Ajoutez le code ici...',
   ),
+
+  'Admin_AddScript'       => 'Gérer les scripts', // for TS 5.1.1-b1+ AdminLinkLabel hook, see Addon.ini
+
 );
