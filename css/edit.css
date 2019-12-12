@@ -19,8 +19,11 @@ body.gpAdmin .filetype-addscript_section .CodeMirror .cm-tab {
 
 /* editor component */
 
-.addscript-change-type > label,
-.addscript-change-type > div {
+#ckeditor_area {
+  overflow: visible;
+}
+
+.addscript-change-type > label {
   display: block;
   text-align: center;
   padding: 6px 4px;
@@ -81,7 +84,7 @@ body.gpAdmin .filetype-addscript_section .CodeMirror .cm-tab {
   width: 50%;
   text-align: center;
   padding: 4px;
-  border-right: 1px solid rgba(255, 255, 255, 0.125);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
   background-color: #ccc;
   cursor: pointer;
   -webkit-user-select: none;
@@ -101,3 +104,71 @@ body.gpAdmin .filetype-addscript_section .CodeMirror .cm-tab {
   display: none;
 }
 
+.addscript-linked-to-global-scripts-selection {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 3px;
+  margin-top: 6px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.addscript-linked-to-global-scripts-selection > div.addscript-list-trigger {
+  padding: 4px 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.addscript-linked-to-global-scripts-selection > div.addscript-list-trigger > i.fa {
+  margin: 0;
+  font-size: 12px !important;
+  line-height: 1.6 !important;
+  width: 16px;
+  text-align: center;
+  float: right;
+}
+
+.addscript-linked-to-global-scripts-selection > div.addscript-list-trigger > span {
+  display: inline-block;
+  margin: 0;
+  width: calc(100% - 16px);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.addscript-linked-to-global-scripts-selection > ul.addscript-linked-to-list {
+  display: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.addscript-linked-to-global-scripts-selection > ul > li > label {
+  display: block;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 4px 8px;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.addscript-linked-to-global-scripts-selection > ul > li > label.is-selected {
+  background-color: #38AB90;
+  color: #fff;
+}
+
+.addscript-linked-to-global-scripts-selection > ul > li > label > input {
+  display: none;
+}

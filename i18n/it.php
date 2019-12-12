@@ -3,18 +3,20 @@
 defined('is_running') or die('Not an entry point...');
 
 $i18n = array(
-  'error'                 => 'Errore',
-  'warning'               => 'Avvertimento',
-  'notice'                => 'Avviso',
-  'invalid_url'           => 'l’URL corrente sembra non essere valido',
-  'check'                 => 'Controllare',
-  'check_again'           => 'Ricontrollare',
-  'script_label'          => 'Etichetta dello script',
-  'load_in'               => 'Carica in&hellip;',
-  'add_script'            => 'Aggiungi script',
-  'opt_in_required'       => 'Richiede il cookie di opt-in',
+  'error'                     => 'Errore',
+  'warning'                   => 'Avvertimento',
+  'notice'                    => 'Avviso',
+  'invalid_url'               => 'l’URL corrente sembra non essere valido',
+  'check'                     => 'Controllare',
+  'check_again'               => 'Ricontrollare',
+  'script_label'              => 'Etichetta dello script',
+  'load_in'                   => 'Carica in&hellip;',
+  'add_script'                => 'Aggiungi script',
+  'opt_in_required'           => 'Richiede il cookie di opt-in',
+  'global_scripts'            => 'Script globali',
+  'linked_to_global_scripts'  => 'Collegato a script globali',
 
-  'types'                 => array(
+  'types' => array(
     'js'      => 'JavaScript',
     'jQuery'  => 'jQuery',
     'url'     => 'URL dello script',

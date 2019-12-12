@@ -118,6 +118,9 @@ class Edit extends \Addon\AddScript\Common
 		self::GetTranslations();
 		echo "\n" . 'AddScript_i18n = ' . json_encode(self::$i18n) . ';' . "\n";
 
+		self::GetGlobalScripts();
+		echo "\n" . 'AddScript_globalScripts = ' . json_encode(self::$global_scripts) . ';' . "\n";
+
 		$addonBasePath = (strpos($addonRelativeCode, 'addons/') > 0)
 			? '/addons/' . $addonFolderName
 			: '/data/_addoncode/' . $addonFolderName;
@@ -131,7 +134,7 @@ class Edit extends \Addon\AddScript\Common
 		$scripts[] = $addonRelativeCode . '/thirdparty/codemirror/addon/display/placeholder.min.js';
 		$scripts[] = $addonRelativeCode . '/thirdparty/codemirror/addon/show-invisibles/show-invisibles.js';
 		$scripts[] = $addonRelativeCode . '/js/edit.js';
-		// $scripts[] = array( 'code' => '<style></style>' );
+
 		return $scripts;
 	}
 

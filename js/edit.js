@@ -18,10 +18,40 @@ function gp_init_inline_edit(area_id, section_object){
     script_type   : false,
     script_attrs  : { async : false, defer : false },
     linked_to     : [],
+    ui            : {},
+    save_path     : gp_editing.get_path(area_id),
+    codeMirror : null,
+
+
+    destroy       : function(){},
+
+
+    updateElement : function(){},
+
+
+    checkDirty : function(){
+      return cache != gp_editor.gp_saveData(true);
+    },
+
+
+    resetDirty : function(){
+      cache = gp_editor.gp_saveData(true);
+    },
+
+
+    CanAutoSave : function(){ 
+      return false;  // prevent saving invalid script fragments
+    },
+
+
+    switchMode : function(type){
+      gp_editor.script_type = type;
+      gp_editor.createCodeMirror( gp_editor.script_type );
+    },
+
 
     init : function(){
-      console.log('section_object = ', section_object);
-
+      // console.log('section_object = ', section_object);
       gp_editor.script        = section_object.script;
       gp_editor.script_type   = section_object.script_type;
 
@@ -29,19 +59,14 @@ function gp_init_inline_edit(area_id, section_object){
         gp_editor.script_attrs[v] = true;
       });
 
+      gp_editor.global_scripts = AddScript_globalScripts || {};
+
       gp_editor.linked_to = section_object.linked_to;
 
       gp_editor.createEditorUi();
       gp_editor.createCodeMirror(gp_editor.script_type);
       gp_editor.resetDirty();
       loaded();
-    },
-
-
-    ui : {},
-
-    CanAutoSave : function(){ 
-      return false;  // prevent saving invalid script fragments
     },
 
 
@@ -57,52 +82,31 @@ function gp_init_inline_edit(area_id, section_object){
     },
 
 
-    save_path : gp_editing.get_path(area_id),
-
-
-    destroy : function(){},
-
-
-    checkDirty : function(){
-      return cache != gp_editor.gp_saveData(true);
-    },
-
-
     gp_saveData : function(get_cache){
       if( typeof(get_cache) != 'boolean' ){
         gp_editor.checkInput();
       }
 
-      // console.log('gp_editor.script_attrs = ', gp_editor.script_attrs);
       var script_attrs = []; 
       $.each(gp_editor.script_attrs, function(i, v){
         if( v ){
           script_attrs.push(i);
         }
       });
-      // console.log('script_attrs = ', script_attrs);
 
       var linked_to = [];
-      $.each(gp_editor.linked_to, function(i, v){
-        if( v ){
-          linked_to.push(i);
+      gp_editor.ui.linkedTo.find('input[type="checkbox"]').each(function(){
+        if( $(this).prop('checked')){
+          linked_to.push($(this).attr('name'));
         }
       });
 
       return 'script='
         + encodeURIComponent(gp_editor.codeMirror.getValue())
         + '&script_type=' + gp_editor.script_type
-        + '&' + $.param({script_attrs : script_attrs})
-        + '&' + $.param({linked_to : linked_to});
-    },
-
-
-    resetDirty : function(){
-      cache = gp_editor.gp_saveData(true);
-    },
-
-
-    updateElement : function(){},
+        + '&' + $.param({ script_attrs : script_attrs })
+        + '&' + $.param({ linked_to : linked_to });
+     },
 
 
     checkInput : function(){
@@ -153,9 +157,6 @@ function gp_init_inline_edit(area_id, section_object){
     },
 
 
-    codeMirror : null,
-
-
     createCodeMirror : function(){
       if( gp_editor.codeMirror ){
         gp_editor.codeMirror.toTextArea(); // destroy current
@@ -187,6 +188,7 @@ function gp_init_inline_edit(area_id, section_object){
 
 
     createEditorUi : function(){
+
       gp_editor.ui.changeType = $('<div class="addscript-change-type">'
         + '<label><input type="radio" name="changetype" value="js" />' + AddScript_i18n['types']['js'] + '</label>'
         + '<label><input type="radio" name="changetype" value="jQuery" />' + AddScript_i18n['types']['jQuery'] + '</label>'
@@ -241,12 +243,40 @@ function gp_init_inline_edit(area_id, section_object){
           .siblings().removeClass('is-checked');
         gp_editor.switchMode( $(this).val() );
       });
-    },
 
+      gp_editor.ui.linkedTo = $('<div class="addscript-linked-to-global-scripts-selection" '
+        + 'title="' + AddScript_i18n['linked_to_global_scripts'] + '">'
+        +   '<div class="addscript-list-trigger">'
+        +     '<span>' + AddScript_i18n['linked_to_global_scripts'] + '</span>'
+        +     '<i class="fa fa-caret-down"></i>'
+        +   '</div>'
+        + '</div>');
 
-    switchMode : function(type){
-      gp_editor.script_type = type;
-      gp_editor.createCodeMirror( gp_editor.script_type );
+      var $list = $('<ul class="addscript-linked-to-list"></ul>');
+      $.each(gp_editor.global_scripts, function(id, script_data){
+        var linked = $.inArray(id, gp_editor.linked_to) !== -1; 
+        var is_selected = linked ? ' class="is-selected"' : '';
+        var checked = linked ? ' checked="checked"' : '';
+        var $li = $('<li>'
+          +   '<label' + is_selected + '>'
+          +     '<input type="checkbox" name="' + id + '"' + checked + '/>'
+          +     '<span>' + script_data.label + '</span>'
+          +   '</label>'
+          + '</li>').appendTo($list);
+      });
+
+      $list
+        .appendTo(gp_editor.ui.linkedTo)
+        .find('input[type="checkbox"]').on('change', function(){
+          $(this).closest('label')
+            .toggleClass('is-selected', $(this).prop('checked'));
+        });
+
+      gp_editor.ui.linkedTo.find('.addscript-list-trigger').on('click', function(){
+        gp_editor.ui.linkedTo.find('ul.addscript-linked-to-list').slideToggle();
+      });
+
+      gp_editor.ui.linkedTo.appendTo('#ckeditor_controls');
     },
 
 
