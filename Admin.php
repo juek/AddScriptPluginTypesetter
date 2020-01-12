@@ -402,12 +402,12 @@ class Admin extends \Addon\AddScript\Common
 
 
 	/**
-	 * 
 	 * New filter hook as of 5.1.1-b1
 	 * we may now use translated Admin Link labels
-	 * 
+	 * @param array $array [string $link_label, string $link_name]
+	 * @return string changed $link_label
 	 */
-	static function AdminLinkLabel($link_name, $link_label) {
+	static function AdminLinkLabel($link_label, $link_name) {
 
 		if( $link_name !== 'Admin_AddScript' ){
 			return $link_label;
