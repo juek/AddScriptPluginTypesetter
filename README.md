@@ -13,7 +13,7 @@ See also [Typesetter Home](https://www.typesettercms.com), [Typesetter on GitHub
 1.1.1
 
 ## Change Log ##
-* 1.1.1 Admin page ready to manage global scripts, internationlization (currently en, de, fr, it)
+* 1.1.1 Admin page ready to manage global scripts, internationalization (currently en, de, fr, it)
 * 1.1.0 Some new features and enhancements, see below
 * 1.0.0 Intial version
 
